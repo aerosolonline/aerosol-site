@@ -82,7 +82,7 @@ body{
 
 }
 
-/* CENTERED LAMBS */
+/* CENTERED LAMB GROUP */
 
 .lamb-container{
 
@@ -113,37 +113,41 @@ body{
     transform .3s ease,
     filter .3s ease;
 
+  /* SOFTER GLOW */
+
   filter:
-    drop-shadow(0 0 10px rgba(255,255,255,.85));
+    drop-shadow(0 0 4px rgba(255,255,255,.35));
 
 }
 
 .lamb:hover{
 
   transform:
-    scale(1.08)
+    scale(1.05)
     rotate(-2deg);
 
   filter:
-    drop-shadow(0 0 18px rgba(255,255,255,1));
+    drop-shadow(0 0 10px rgba(255,255,255,.7));
 
 }
 
 /* POSITIONS */
 
 .ig{
-  left:0;
-  top:40px;
+  left:40px;
+  top:10px;
 }
 
 .shop{
   left:220px;
-  top:120px;
+  top:95px;
+
+  width:190px;
 }
 
 .yt{
   left:430px;
-  top:10px;
+  top:25px;
 }
 
 /* PLAYER */
@@ -260,6 +264,8 @@ body{
   .shop{
     left:90px;
     top:140px;
+
+    width:150px;
   }
 
   .yt{
@@ -280,7 +286,7 @@ body{
 <img
   src="bg.jpg"
   class="background"
-/>
+>
 
 <!-- OVERLAY -->
 
@@ -291,7 +297,7 @@ body{
 <img
   src="logo.png"
   class="logo"
-/>
+>
 
 <!-- LAMBS -->
 
