@@ -28,9 +28,9 @@ body{
 
   overflow:hidden;
 
-  background:black;
-
   font-family:Arial, sans-serif;
+
+  background:black;
 
 }
 
@@ -43,20 +43,18 @@ body{
   top:0;
   left:0;
 
-  width:100%;
-  height:100%;
+  width:100vw;
+  height:100vh;
 
   object-fit:cover;
 
   object-position:center;
 
-  opacity:.9;
-
-  z-index:1;
+  opacity:.92;
 
 }
 
-/* DARK VHS OVERLAY */
+/* DARK OVERLAY */
 
 .overlay{
 
@@ -65,9 +63,7 @@ body{
   inset:0;
 
   background:
-    rgba(0,0,0,.18);
-
-  z-index:2;
+    rgba(0,0,0,.15);
 
   pointer-events:none;
 
@@ -84,11 +80,9 @@ body{
 
   width:300px;
 
-  z-index:20;
-
 }
 
-/* CENTERED LAMB GROUP */
+/* CENTERED LAMBS */
 
 .lamb-container{
 
@@ -102,8 +96,6 @@ body{
 
   transform:
     translate(-50%,-50%);
-
-  z-index:10;
 
 }
 
@@ -154,13 +146,13 @@ body{
   top:10px;
 }
 
-/* AUDIO PLAYER */
+/* PLAYER */
 
 .player{
 
   position:absolute;
 
-  bottom:36px;
+  bottom:34px;
   left:50%;
 
   transform:
@@ -170,8 +162,6 @@ body{
   align-items:center;
 
   gap:10px;
-
-  z-index:30;
 
 }
 
@@ -193,23 +183,23 @@ body{
 
 }
 
-/* BAR CONTAINER */
+/* BAR */
 
 .progress-container{
 
-  width:95px;
-  height:3px;
-
-  background:
-    rgba(239,142,231,.25);
-
   position:relative;
 
-  overflow:hidden;
+  width:95px;
+  height:4px;
+
+  background:#b956b2;
+
+  border:
+    1px solid #b956b2;
 
 }
 
-/* FILLED BAR */
+/* FILL */
 
 .progress-fill{
 
@@ -218,9 +208,8 @@ body{
   top:0;
   left:0;
 
-  height:100%;
-
   width:0%;
+  height:100%;
 
   background:#ef8ee7;
 
@@ -231,6 +220,9 @@ body{
 #progress{
 
   position:absolute;
+
+  top:-4px;
+  left:0;
 
   width:95px;
   height:12px;
@@ -250,8 +242,10 @@ body{
   }
 
   .lamb-container{
+
     width:320px;
     height:420px;
+
   }
 
   .lamb{
@@ -313,7 +307,7 @@ body{
     <img
       src="lamb1.png"
       class="lamb ig"
-    />
+    >
 
   </a>
 
@@ -327,7 +321,7 @@ body{
     <img
       src="lamb2.png"
       class="lamb shop"
-    />
+    >
 
   </a>
 
@@ -341,13 +335,13 @@ body{
     <img
       src="lamb3.png"
       class="lamb yt"
-    />
+    >
 
   </a>
 
 </div>
 
-<!-- AUDIO -->
+<!-- PLAYER -->
 
 <div class="player">
 
@@ -365,23 +359,23 @@ body{
     <input
       type="range"
       id="progress"
-      value="0"
       min="0"
       max="100"
-    />
+      value="0"
+    >
 
   </div>
 
 </div>
 
-<!-- AUDIO FILE -->
+<!-- AUDIO -->
 
 <audio id="audio">
 
   <source
     src="song.mp3"
     type="audio/mpeg"
-  />
+  >
 
 </audio>
 
@@ -401,7 +395,7 @@ const progress =
 const progressFill =
   document.getElementById("progressFill");
 
-/* PLAY / PAUSE */
+/* PLAY */
 
 playBtn.addEventListener("click",()=>{
 
