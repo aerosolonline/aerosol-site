@@ -28,9 +28,9 @@ body{
 
   overflow:hidden;
 
-  font-family:Arial, sans-serif;
-
   background:black;
+
+  font-family:Arial, sans-serif;
 
 }
 
@@ -54,7 +54,7 @@ body{
 
 }
 
-/* DARK OVERLAY */
+/* OVERLAY */
 
 .overlay{
 
@@ -63,7 +63,7 @@ body{
   inset:0;
 
   background:
-    rgba(0,0,0,.15);
+    rgba(0,0,0,.08);
 
   pointer-events:none;
 
@@ -75,27 +75,31 @@ body{
 
   position:absolute;
 
-  top:20px;
-  left:20px;
+  top:18px;
+  left:16px;
 
-  width:300px;
+  width:280px;
+
+  z-index:20;
 
 }
 
-/* CENTERED LAMB GROUP */
+/* LAMB GROUP */
 
 .lamb-container{
 
   position:absolute;
 
-  top:50%;
   left:50%;
-
-  width:700px;
-  height:320px;
+  top:54%;
 
   transform:
     translate(-50%,-50%);
+
+  width:min(70vw,700px);
+  height:min(34vw,340px);
+
+  z-index:15;
 
 }
 
@@ -105,49 +109,53 @@ body{
 
   position:absolute;
 
-  width:180px;
+  width:26%;
 
   cursor:pointer;
 
   transition:
-    transform .3s ease,
-    filter .3s ease;
-
-  /* SOFTER GLOW */
+    transform .25s ease,
+    filter .25s ease;
 
   filter:
-    drop-shadow(0 0 4px rgba(255,255,255,.35));
+    drop-shadow(0 0 3px rgba(255,255,255,.28));
 
 }
 
 .lamb:hover{
 
   transform:
-    scale(1.05)
+    scale(1.04)
     rotate(-2deg);
 
   filter:
-    drop-shadow(0 0 10px rgba(255,255,255,.7));
+    drop-shadow(0 0 7px rgba(255,255,255,.5));
 
 }
 
-/* POSITIONS */
+/* POSITIONING */
 
 .ig{
-  left:40px;
-  top:10px;
+
+  left:8%;
+  top:6%;
+
 }
 
 .shop{
-  left:220px;
-  top:95px;
 
-  width:190px;
+  width:29%;
+
+  left:35%;
+  top:42%;
+
 }
 
 .yt{
-  left:430px;
-  top:25px;
+
+  left:63%;
+  top:8%;
+
 }
 
 /* PLAYER */
@@ -156,8 +164,8 @@ body{
 
   position:absolute;
 
-  bottom:34px;
   left:50%;
+  bottom:38px;
 
   transform:
     translateX(-50%);
@@ -166,6 +174,8 @@ body{
   align-items:center;
 
   gap:10px;
+
+  z-index:30;
 
 }
 
@@ -193,13 +203,13 @@ body{
 
   position:relative;
 
-  width:95px;
+  width:96px;
   height:4px;
 
-  background:#b956b2;
+  background:#9f4f9c;
 
   border:
-    1px solid #b956b2;
+    1px solid #9f4f9c;
 
 }
 
@@ -225,11 +235,11 @@ body{
 
   position:absolute;
 
-  top:-4px;
+  top:-5px;
   left:0;
 
-  width:95px;
-  height:12px;
+  width:96px;
+  height:14px;
 
   opacity:0;
 
@@ -242,35 +252,48 @@ body{
 @media (max-width:768px){
 
   .logo{
-    width:220px;
+
+    width:180px;
+
+    top:14px;
+    left:12px;
+
   }
 
   .lamb-container{
 
-    width:320px;
-    height:420px;
+    width:92vw;
+    height:48vw;
 
-  }
+    top:56%;
 
-  .lamb{
-    width:140px;
   }
 
   .ig{
-    left:0;
-    top:20px;
+
+    left:2%;
+    top:10%;
+
   }
 
   .shop{
-    left:90px;
-    top:140px;
 
-    width:150px;
+    left:34%;
+    top:46%;
+
   }
 
   .yt{
-    left:170px;
-    top:40px;
+
+    left:66%;
+    top:14%;
+
+  }
+
+  .player{
+
+    bottom:28px;
+
   }
 
 }
