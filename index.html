@@ -75,8 +75,8 @@ body{
 
   position:absolute;
 
-  top:18px;
-  left:16px;
+  top:16px;
+  left:14px;
 
   width:280px;
 
@@ -84,22 +84,35 @@ body{
 
 }
 
-/* LAMB GROUP */
+/* LAMB WRAPPER */
 
-.lamb-container{
+.lamb-wrapper{
 
   position:absolute;
 
   left:50%;
-  top:54%;
+  top:58%;
 
   transform:
     translate(-50%,-50%);
 
-  width:min(70vw,700px);
-  height:min(34vw,340px);
+  width:700px;
+  height:260px;
 
   z-index:15;
+
+}
+
+/* SCALE WHOLE COMPOSITION */
+
+.lamb-scale{
+
+  position:relative;
+
+  width:700px;
+  height:260px;
+
+  transform-origin:center;
 
 }
 
@@ -108,8 +121,6 @@ body{
 .lamb{
 
   position:absolute;
-
-  width:26%;
 
   cursor:pointer;
 
@@ -133,28 +144,32 @@ body{
 
 }
 
-/* POSITIONING */
+/* EXACT REFERENCE POSITIONS */
 
 .ig{
 
-  left:8%;
-  top:6%;
+  width:165px;
+
+  left:120px;
+  top:0px;
 
 }
 
 .shop{
 
-  width:29%;
+  width:185px;
 
-  left:35%;
-  top:42%;
+  left:280px;
+  top:82px;
 
 }
 
 .yt{
 
-  left:63%;
-  top:8%;
+  width:170px;
+
+  left:470px;
+  top:10px;
 
 }
 
@@ -165,7 +180,7 @@ body{
   position:absolute;
 
   left:50%;
-  bottom:38px;
+  bottom:36px;
 
   transform:
     translateX(-50%);
@@ -229,7 +244,7 @@ body{
 
 }
 
-/* INVISIBLE INPUT */
+/* INPUT */
 
 #progress{
 
@@ -247,52 +262,37 @@ body{
 
 }
 
-/* MOBILE */
+/* RESPONSIVE SCALE */
 
-@media (max-width:768px){
+@media (max-width:900px){
+
+  .lamb-scale{
+
+    transform:
+      scale(.82);
+
+  }
+
+}
+
+@media (max-width:700px){
 
   .logo{
 
     width:180px;
 
-    top:14px;
-    left:12px;
-
   }
 
-  .lamb-container{
-
-    width:92vw;
-    height:48vw;
+  .lamb-wrapper{
 
     top:56%;
 
   }
 
-  .ig{
+  .lamb-scale{
 
-    left:2%;
-    top:10%;
-
-  }
-
-  .shop{
-
-    left:34%;
-    top:46%;
-
-  }
-
-  .yt{
-
-    left:66%;
-    top:14%;
-
-  }
-
-  .player{
-
-    bottom:28px;
+    transform:
+      scale(.58);
 
   }
 
@@ -324,49 +324,53 @@ body{
 
 <!-- LAMBS -->
 
-<div class="lamb-container">
+<div class="lamb-wrapper">
 
-  <!-- INSTAGRAM -->
+  <div class="lamb-scale">
 
-  <a
-    href="https://instagram.com/aerosol_____"
-    target="_blank"
-  >
+    <!-- IG -->
 
-    <img
-      src="lamb1.png"
-      class="lamb ig"
+    <a
+      href="https://instagram.com/aerosol_____"
+      target="_blank"
     >
 
-  </a>
+      <img
+        src="lamb1.png"
+        class="lamb ig"
+      >
 
-  <!-- SHOP -->
+    </a>
 
-  <a
-    href="https://aerosolskateboards.com"
-    target="_blank"
-  >
+    <!-- SHOP -->
 
-    <img
-      src="lamb2.png"
-      class="lamb shop"
+    <a
+      href="https://aerosolskateboards.com"
+      target="_blank"
     >
 
-  </a>
+      <img
+        src="lamb2.png"
+        class="lamb shop"
+      >
 
-  <!-- YOUTUBE -->
+    </a>
 
-  <a
-    href="https://www.youtube.com/@a.e.r.o.s.o.l"
-    target="_blank"
-  >
+    <!-- YOUTUBE -->
 
-    <img
-      src="lamb3.png"
-      class="lamb yt"
+    <a
+      href="https://www.youtube.com/@a.e.r.o.s.o.l"
+      target="_blank"
     >
 
-  </a>
+      <img
+        src="lamb3.png"
+        class="lamb yt"
+      >
+
+    </a>
+
+  </div>
 
 </div>
 
