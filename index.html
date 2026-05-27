@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AEROSOL</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      overflow:hidden;
+      background:black;
+      font-family:Arial;
+    }
+
+    video{
+      position:fixed;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-1;
+      filter:blur(2px) brightness(70%);
+    }
+
+    .logo{
+      position:absolute;
+      top:20px;
+      left:20px;
+      width:300px;
+    }
+
+    .lamb{
+      position:absolute;
+      width:180px;
+      cursor:pointer;
+      transition:.3s;
+      filter:drop-shadow(0 0 10px white);
+    }
+
+    .lamb:hover{
+      transform:scale(1.08);
+    }
+
+    .ig{
+      top:170px;
+      left:240px;
+    }
+
+    .shop{
+      top:250px;
+      left:430px;
+    }
+
+    .yt{
+      top:180px;
+      left:620px;
+    }
+
+    .player{
+      position:absolute;
+      bottom:40px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+    }
+
+    button{
+      background:#ff8de1;
+      color:white;
+      border:none;
+      padding:10px 20px;
+      cursor:pointer;
+    }
+
+    input[type=range]{
+      width:260px;
+      accent-color:#ff8de1;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- BACKGROUND VIDEO -->
+  <video autoplay muted loop>
+    <source src="bg.mp4" type="video/mp4">
+  </video>
+
+  <!-- LOGO -->
+  <img src="logo.png" class="logo">
+
+  <!-- LAMBS -->
+
+  <a href="https://instagram.com/YOURNAME" target="_blank">
+    <img src="lamb1.png" class="lamb ig">
+  </a>
+
+  <a href="https://YOURSTORE.com" target="_blank">
+    <img src="lamb2.png" class="lamb shop">
+  </a>
+
+  <a href="https://youtube.com" target="_blank">
+    <img src="lamb3.png" class="lamb yt">
+  </a>
+
+  <!-- AUDIO PLAYER -->
+
+  <div class="player">
+
+    <button id="playBtn">
+      PLAY
+    </button>
+
+    <input
+      type="range"
+      id="progress"
+      value="0"
+      min="0"
+      max="100"
+    >
+
+  </div>
+
+  <audio id="audio">
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+
+    const audio =
+      document.getElementById("audio");
+
+    const playBtn =
+      document.getElementById("playBtn");
+
+    const progress =
+      document.getElementById("progress");
+
+    playBtn.addEventListener("click",()=>{
+
+      if(audio.paused){
+        audio.play();
+        playBtn.innerText="PAUSE";
+      }else{
+        audio.pause();
+        playBtn.innerText="PLAY";
+      }
+
+    });
+
+    audio.addEventListener("timeupdate",()=>{
+
+      const percent =
+        (audio.currentTime/audio.duration)*100;
+
+      progress.value = percent;
+
+    });
+
+    progress.addEventListener("input",()=>{
+
+      audio.currentTime =
+        (progress.value/100)*audio.duration;
+
+    });
+
+  </script>
+
+</body>
+</html>
