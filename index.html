@@ -34,6 +34,10 @@
 
     }
 
+    body{
+      position:relative;
+    }
+
     /* BACKGROUND */
 
     .background{
@@ -43,13 +47,15 @@
       top:0;
       left:0;
 
-      width:100vw;
-      height:100vh;
+      width:100%;
+      height:100%;
 
       object-fit:cover;
       object-position:center;
 
-      z-index:-2;
+      z-index:-10;
+
+      opacity:.9;
 
       filter:
         brightness(70%)
@@ -68,7 +74,7 @@
       background:
         rgba(0,0,0,0.12);
 
-      z-index:-1;
+      z-index:-5;
 
       pointer-events:none;
 
@@ -170,7 +176,7 @@
       display:flex;
       align-items:center;
 
-      gap:12px;
+      gap:10px;
 
       z-index:30;
 
@@ -186,7 +192,7 @@
 
       color:#ef8ee7;
 
-      font-size:22px;
+      font-size:18px;
 
       cursor:pointer;
 
@@ -209,74 +215,49 @@
 
     }
 
-    /* SLIDER */
+    /* PROGRESS BAR */
 
-    input[type=range]{
+    .progress-wrap{
 
-      -webkit-appearance:none;
-
-      width:110px;
+      width:120px;
       height:3px;
+
+      background:
+        rgba(239,142,231,0.3);
+
+      position:relative;
+
+      overflow:hidden;
+
+    }
+
+    .progress-bar{
+
+      position:absolute;
+
+      top:0;
+      left:0;
+
+      height:100%;
+
+      width:0%;
 
       background:#ef8ee7;
 
-      border-radius:999px;
+    }
+
+    /* INVISIBLE RANGE INPUT */
+
+    #progress{
+
+      position:absolute;
+
+      width:120px;
+      height:12px;
+
+      opacity:0;
 
       cursor:pointer;
-
-    }
-
-    /* WEBKIT TRACK */
-
-    input[type=range]::-webkit-slider-runnable-track{
-
-      height:3px;
-
-      background:#ef8ee7;
-
-      border-radius:999px;
-
-    }
-
-    /* WEBKIT THUMB */
-
-    input[type=range]::-webkit-slider-thumb{
-
-      -webkit-appearance:none;
-
-      width:8px;
-      height:8px;
-
-      border-radius:50%;
-
-      background:#ef8ee7;
-
-      margin-top:-2.5px;
-
-    }
-
-    /* FIREFOX */
-
-    input[type=range]::-moz-range-track{
-
-      height:3px;
-
-      background:#ef8ee7;
-
-      border-radius:999px;
-
-    }
-
-    input[type=range]::-moz-range-thumb{
-
-      width:8px;
-      height:8px;
-
-      border:none;
-
-      border-radius:50%;
-
-      background:#ef8ee7;
 
     }
 
@@ -325,7 +306,7 @@
   <!-- BACKGROUND -->
 
   <img
-    src="bg.jpg"
+    src="./bg.jpg"
     class="background"
   >
 
@@ -336,7 +317,7 @@
   <!-- LOGO -->
 
   <img
-    src="logo.png"
+    src="./logo.png"
     class="logo"
   >
 
@@ -352,7 +333,7 @@
     >
 
       <img
-        src="lamb1.png"
+        src="./lamb1.png"
         class="lamb ig"
       >
 
@@ -366,7 +347,7 @@
     >
 
       <img
-        src="lamb2.png"
+        src="./lamb2.png"
         class="lamb shop"
       >
 
@@ -380,7 +361,7 @@
     >
 
       <img
-        src="lamb3.png"
+        src="./lamb3.png"
         class="lamb yt"
       >
 
@@ -396,13 +377,22 @@
       ▶
     </button>
 
-    <input
-      type="range"
-      id="progress"
-      value="0"
-      min="0"
-      max="100"
-    >
+    <div class="progress-wrap">
+
+      <div
+        class="progress-bar"
+        id="progressBar"
+      ></div>
+
+      <input
+        type="range"
+        id="progress"
+        value="0"
+        min="0"
+        max="100"
+      >
+
+    </div>
 
   </div>
 
@@ -411,7 +401,7 @@
   <audio id="audio">
 
     <source
-      src="song.mp3"
+      src="./song.mp3"
       type="audio/mpeg"
     >
 
@@ -429,6 +419,9 @@
 
     const progress =
       document.getElementById("progress");
+
+    const progressBar =
+      document.getElementById("progressBar");
 
     /* PLAY / PAUSE */
 
@@ -459,14 +452,22 @@
 
       progress.value = percent;
 
+      progressBar.style.width =
+        percent + "%";
+
     });
 
     /* SCRUB AUDIO */
 
     progress.addEventListener("input",()=>{
 
-      audio.currentTime =
+      const scrubTime =
         (progress.value / 100) * audio.duration;
+
+      audio.currentTime = scrubTime;
+
+      progressBar.style.width =
+        progress.value + "%";
 
     });
 
