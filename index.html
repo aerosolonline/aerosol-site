@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>AEROSOL</title>
 
   <style>
@@ -16,100 +18,241 @@
     body{
       overflow:hidden;
       background:black;
-      font-family:Arial;
+      font-family:Arial, sans-serif;
+      width:100vw;
+      height:100vh;
     }
+
+    /* BACKGROUND */
 
     .background{
       position:fixed;
-      width:100%;
-      height:100%;
+
+      inset:0;
+
+      width:100vw;
+      height:100vh;
+
       object-fit:cover;
+
       z-index:-1;
-      filter:blur(2px) brightness(70%);
+
+      filter:
+        blur(2px)
+        brightness(70%)
+        saturate(80%);
     }
+
+    /* LOGO */
 
     .logo{
       position:absolute;
+
       top:20px;
       left:20px;
+
       width:300px;
+
+      z-index:10;
     }
+
+    /* CENTERED LAMB AREA */
+
+    .lamb-container{
+      position:absolute;
+
+      top:50%;
+      left:50%;
+
+      width:700px;
+      height:320px;
+
+      transform:translate(-50%,-50%);
+    }
+
+    /* LAMBS */
 
     .lamb{
       position:absolute;
+
       width:180px;
+
       cursor:pointer;
-      transition:.3s;
-      filter:drop-shadow(0 0 10px white);
+
+      transition:
+        transform .3s ease,
+        filter .3s ease;
+
+      filter:
+        drop-shadow(0 0 10px rgba(255,255,255,0.8));
     }
 
     .lamb:hover{
-      transform:scale(1.08);
+      transform:
+        scale(1.08)
+        rotate(-2deg);
+
+      filter:
+        drop-shadow(0 0 18px rgba(255,255,255,1));
     }
 
+    /* INDIVIDUAL POSITIONS */
+
     .ig{
-      top:170px;
-      left:240px;
+      left:0;
+      top:40px;
     }
 
     .shop{
-      top:250px;
-      left:430px;
+      left:220px;
+      top:120px;
     }
 
     .yt{
-      top:180px;
-      left:620px;
+      left:430px;
+      top:10px;
     }
+
+    /* AUDIO PLAYER */
 
     .player{
       position:absolute;
-      bottom:40px;
+
+      bottom:35px;
       left:50%;
+
       transform:translateX(-50%);
+
       display:flex;
       flex-direction:column;
       align-items:center;
+
       gap:10px;
+
+      z-index:20;
     }
 
     button{
       background:#ff8de1;
+
       color:white;
+
       border:none;
-      padding:10px 20px;
+
+      padding:10px 22px;
+
       cursor:pointer;
+
+      font-size:14px;
+
+      letter-spacing:2px;
+
+      transition:.3s;
+    }
+
+    button:hover{
+      opacity:.85;
     }
 
     input[type=range]{
       width:260px;
+
       accent-color:#ff8de1;
     }
 
+    /* MOBILE */
+
+    @media (max-width:768px){
+
+      .logo{
+        width:220px;
+      }
+
+      .lamb-container{
+        width:320px;
+        height:420px;
+      }
+
+      .lamb{
+        width:140px;
+      }
+
+      .ig{
+        left:0;
+        top:20px;
+      }
+
+      .shop{
+        left:90px;
+        top:140px;
+      }
+
+      .yt{
+        left:170px;
+        top:40px;
+      }
+
+      input[type=range]{
+        width:180px;
+      }
+
+    }
+
   </style>
+
 </head>
 
 <body>
 
   <!-- BACKGROUND -->
-<img src="bg.png" class="background">
+
+  <img src="bg.png" class="background">
 
   <!-- LOGO -->
+
   <img src="logo.png" class="logo">
 
   <!-- LAMBS -->
 
-  <a href="https://instagram.com/aerosol_____" target="_blank">
-    <img src="lamb1.png" class="lamb ig">
-  </a>
+  <div class="lamb-container">
 
-  <a href="https://aerosolskateboards.com" target="_blank">
-    <img src="lamb2.png" class="lamb shop">
-  </a>
+    <!-- INSTAGRAM -->
 
-  <a href="www.youtube.com/@a.e.r.o.s.o.l" target="_blank">
-    <img src="lamb3.png" class="lamb yt">
-  </a>
+    <a href="https://instagram.com/aerosol_____" target="_blank">
+
+      <img
+        src="lamb1.png"
+        class="lamb ig"
+      >
+
+    </a>
+
+    <!-- SHOP -->
+
+    <a href="https://aerosolskateboards.com" target="_blank">
+
+      <img
+        src="lamb2.png"
+        class="lamb shop"
+      >
+
+    </a>
+
+    <!-- YOUTUBE -->
+
+    <a
+      href="https://www.youtube.com/@a.e.r.o.s.o.l"
+      target="_blank"
+    >
+
+      <img
+        src="lamb3.png"
+        class="lamb yt"
+      >
+
+    </a>
+
+  </div>
 
   <!-- AUDIO PLAYER -->
 
@@ -129,9 +272,18 @@
 
   </div>
 
+  <!-- AUDIO -->
+
   <audio id="audio">
-    <source src="song.mp3" type="audio/mpeg">
+
+    <source
+      src="song.mp3"
+      type="audio/mpeg"
+    >
+
   </audio>
+
+  <!-- SCRIPT -->
 
   <script>
 
@@ -144,31 +296,43 @@
     const progress =
       document.getElementById("progress");
 
+    /* PLAY / PAUSE */
+
     playBtn.addEventListener("click",()=>{
 
       if(audio.paused){
+
         audio.play();
+
         playBtn.innerText="PAUSE";
+
       }else{
+
         audio.pause();
+
         playBtn.innerText="PLAY";
+
       }
 
     });
 
+    /* UPDATE PROGRESS */
+
     audio.addEventListener("timeupdate",()=>{
 
       const percent =
-        (audio.currentTime/audio.duration)*100;
+        (audio.currentTime / audio.duration) * 100;
 
       progress.value = percent;
 
     });
 
+    /* SCRUB AUDIO */
+
     progress.addEventListener("input",()=>{
 
       audio.currentTime =
-        (progress.value/100)*audio.duration;
+        (progress.value / 100) * audio.duration;
 
     });
 
