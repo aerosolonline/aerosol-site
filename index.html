@@ -40,17 +40,17 @@ body{
 
   position:fixed;
 
-  top:0;
-  left:0;
+  inset:0;
 
-  width:100vw;
-  height:100vh;
+  width:100%;
+  height:100%;
 
   object-fit:cover;
-
   object-position:center;
 
   opacity:.92;
+
+  z-index:-2;
 
 }
 
@@ -67,6 +67,8 @@ body{
 
   pointer-events:none;
 
+  z-index:-1;
+
 }
 
 /* LOGO */
@@ -75,44 +77,31 @@ body{
 
   position:absolute;
 
-  top:16px;
-  left:14px;
+  top:14px;
+  left:12px;
 
-  width:280px;
+  width:clamp(140px,18vw,280px);
 
   z-index:20;
 
 }
 
-/* LAMB WRAPPER */
+/* LAMB AREA */
 
 .lamb-wrapper{
 
   position:absolute;
 
   left:50%;
-  top:57%;
+  top:54%;
 
-  transform:
-    translate(-50%,-50%);
+  transform:translate(-50%,-50%);
 
-  width:1400px;
-  height:700px;
+  width:min(92vw,1200px);
+
+  aspect-ratio: 16 / 8;
 
   z-index:15;
-
-}
-
-/* SCALE COMPOSITION */
-
-.lamb-scale{
-
-  position:relative;
-
-  width:1400px;
-  height:700px;
-
-  transform-origin:center;
 
 }
 
@@ -129,7 +118,7 @@ body{
     filter .25s ease;
 
   filter:
-    drop-shadow(0 0 3px rgba(255,255,255,.22));
+    drop-shadow(0 0 3px rgba(255,255,255,.2));
 
 }
 
@@ -140,36 +129,38 @@ body{
     rotate(-2deg);
 
   filter:
-    drop-shadow(0 0 7px rgba(255,255,255,.45));
+    drop-shadow(0 0 7px rgba(255,255,255,.4));
 
 }
 
-/* 20% SMALLER + NO OVERLAP */
+/* RESPONSIVE POSITIONS */
+/* 20% SMALLER */
+/* SHOP SLIGHTLY RIGHT */
 
 .ig{
 
-  width:336px;
+  width:31%;
 
-  left:40px;
-  top:70px;
+  left:3%;
+  top:4%;
 
 }
 
 .shop{
 
-  width:376px;
+  width:35%;
 
-  left:500px;
-  top:260px;
+  left:36%;
+  top:36%;
 
 }
 
 .yt{
 
-  width:344px;
+  width:32%;
 
-  left:980px;
-  top:85px;
+  left:70%;
+  top:6%;
 
 }
 
@@ -180,7 +171,7 @@ body{
   position:absolute;
 
   left:50%;
-  bottom:36px;
+  bottom:32px;
 
   transform:
     translateX(-50%);
@@ -262,43 +253,48 @@ body{
 
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
-@media (max-width:1400px){
-
-  .lamb-scale{
-
-    transform:
-      scale(.72);
-
-  }
-
-}
-
-@media (max-width:1000px){
-
-  .logo{
-
-    width:180px;
-
-  }
+@media (max-width:700px){
 
   .lamb-wrapper{
 
-    top:56%;
+    top:50%;
+
+    width:96vw;
 
   }
 
-  .lamb-scale{
+  .ig{
 
-    transform:
-      scale(.5);
+    width:36%;
+
+    left:-2%;
+    top:8%;
+
+  }
+
+  .shop{
+
+    width:40%;
+
+    left:31%;
+    top:44%;
+
+  }
+
+  .yt{
+
+    width:37%;
+
+    left:74%;
+    top:14%;
 
   }
 
   .player{
 
-    bottom:28px;
+    bottom:24px;
 
   }
 
@@ -332,51 +328,47 @@ body{
 
 <div class="lamb-wrapper">
 
-  <div class="lamb-scale">
+  <!-- INSTAGRAM -->
 
-    <!-- INSTAGRAM -->
+  <a
+    href="https://instagram.com/aerosol_____"
+    target="_blank"
+  >
 
-    <a
-      href="https://instagram.com/aerosol_____"
-      target="_blank"
+    <img
+      src="lamb1.png"
+      class="lamb ig"
     >
 
-      <img
-        src="lamb1.png"
-        class="lamb ig"
-      >
+  </a>
 
-    </a>
+  <!-- SHOP -->
 
-    <!-- SHOP -->
+  <a
+    href="https://aerosolskateboards.com"
+    target="_blank"
+  >
 
-    <a
-      href="https://aerosolskateboards.com"
-      target="_blank"
+    <img
+      src="lamb2.png"
+      class="lamb shop"
     >
 
-      <img
-        src="lamb2.png"
-        class="lamb shop"
-      >
+  </a>
 
-    </a>
+  <!-- YOUTUBE -->
 
-    <!-- YOUTUBE -->
+  <a
+    href="https://www.youtube.com/@a.e.r.o.s.o.l"
+    target="_blank"
+  >
 
-    <a
-      href="https://www.youtube.com/@a.e.r.o.s.o.l"
-      target="_blank"
+    <img
+      src="lamb3.png"
+      class="lamb yt"
     >
 
-      <img
-        src="lamb3.png"
-        class="lamb yt"
-      >
-
-    </a>
-
-  </div>
+  </a>
 
 </div>
 
