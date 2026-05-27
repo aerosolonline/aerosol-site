@@ -22,13 +22,16 @@
 
     html,
     body{
+
       width:100%;
       height:100%;
+
       overflow:hidden;
 
       background:black;
 
       font-family:Arial, sans-serif;
+
     }
 
     /* BACKGROUND */
@@ -46,7 +49,7 @@
       object-fit:cover;
       object-position:center;
 
-      z-index:-1;
+      z-index:-2;
 
       filter:
         brightness(70%)
@@ -63,9 +66,9 @@
       inset:0;
 
       background:
-        rgba(0,0,0,0.15);
+        rgba(0,0,0,0.12);
 
-      z-index:0;
+      z-index:-1;
 
       pointer-events:none;
 
@@ -158,17 +161,16 @@
 
       position:absolute;
 
-      bottom:35px;
+      bottom:34px;
       left:50%;
 
       transform:
         translateX(-50%);
 
       display:flex;
-      flex-direction:column;
       align-items:center;
 
-      gap:10px;
+      gap:12px;
 
       z-index:30;
 
@@ -176,35 +178,34 @@
 
     /* PLAY BUTTON */
 
-    button{
+    #playBtn{
 
-      background:#ef8ee7;
-
-      color:white;
+      background:transparent;
 
       border:none;
 
-      padding:
-        10px 22px;
+      color:#ef8ee7;
 
-      font-size:14px;
-
-      letter-spacing:2px;
+      font-size:22px;
 
       cursor:pointer;
 
+      padding:0;
+
+      line-height:1;
+
       transition:
-        opacity .3s ease,
-        transform .3s ease;
+        opacity .2s ease,
+        transform .2s ease;
 
     }
 
-    button:hover{
+    #playBtn:hover{
 
-      opacity:.85;
+      opacity:.75;
 
       transform:
-        scale(1.03);
+        scale(1.05);
 
     }
 
@@ -212,11 +213,70 @@
 
     input[type=range]{
 
-      width:260px;
+      -webkit-appearance:none;
 
-      accent-color:#ef8ee7;
+      width:110px;
+      height:3px;
+
+      background:#ef8ee7;
+
+      border-radius:999px;
 
       cursor:pointer;
+
+    }
+
+    /* WEBKIT TRACK */
+
+    input[type=range]::-webkit-slider-runnable-track{
+
+      height:3px;
+
+      background:#ef8ee7;
+
+      border-radius:999px;
+
+    }
+
+    /* WEBKIT THUMB */
+
+    input[type=range]::-webkit-slider-thumb{
+
+      -webkit-appearance:none;
+
+      width:8px;
+      height:8px;
+
+      border-radius:50%;
+
+      background:#ef8ee7;
+
+      margin-top:-2.5px;
+
+    }
+
+    /* FIREFOX */
+
+    input[type=range]::-moz-range-track{
+
+      height:3px;
+
+      background:#ef8ee7;
+
+      border-radius:999px;
+
+    }
+
+    input[type=range]::-moz-range-thumb{
+
+      width:8px;
+      height:8px;
+
+      border:none;
+
+      border-radius:50%;
+
+      background:#ef8ee7;
 
     }
 
@@ -254,10 +314,6 @@
         top:40px;
       }
 
-      input[type=range]{
-        width:180px;
-      }
-
     }
 
   </style>
@@ -273,7 +329,7 @@
     class="background"
   >
 
-  <!-- DARK OVERLAY -->
+  <!-- OVERLAY -->
 
   <div class="overlay"></div>
 
@@ -337,7 +393,7 @@
   <div class="player">
 
     <button id="playBtn">
-      PLAY
+      ▶
     </button>
 
     <input
@@ -382,13 +438,13 @@
 
         audio.play();
 
-        playBtn.innerText = "PAUSE";
+        playBtn.innerText = "❚❚";
 
       }else{
 
         audio.pause();
 
-        playBtn.innerText = "PLAY";
+        playBtn.innerText = "▶";
 
       }
 
