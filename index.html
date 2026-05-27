@@ -3,475 +3,453 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
 
-  <title>AEROSOL</title>
+<title>AEROSOL</title>
 
-  <style>
+<style>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    html,
-    body{
+html,
+body{
 
-      width:100%;
-      height:100%;
+  width:100%;
+  height:100%;
 
-      overflow:hidden;
+  overflow:hidden;
 
-      background:black;
+  background:black;
 
-      font-family:Arial, sans-serif;
+  font-family:Arial, sans-serif;
 
-    }
+}
 
-    body{
-      position:relative;
-    }
+/* BACKGROUND */
 
-    /* BACKGROUND */
+.background{
 
-    .background{
+  position:fixed;
 
-      position:fixed;
+  top:0;
+  left:0;
 
-      top:0;
-      left:0;
+  width:100%;
+  height:100%;
 
-      width:100%;
-      height:100%;
+  object-fit:cover;
 
-      object-fit:cover;
-      object-position:center;
+  object-position:center;
 
-      z-index:-10;
+  opacity:.9;
 
-      opacity:.9;
+  z-index:1;
 
-      filter:
-        brightness(70%)
-        saturate(80%);
+}
 
-    }
+/* DARK VHS OVERLAY */
 
-    /* DARK OVERLAY */
+.overlay{
 
-    .overlay{
+  position:fixed;
 
-      position:fixed;
+  inset:0;
 
-      inset:0;
+  background:
+    rgba(0,0,0,.18);
 
-      background:
-        rgba(0,0,0,0.12);
+  z-index:2;
 
-      z-index:-5;
+  pointer-events:none;
 
-      pointer-events:none;
+}
 
-    }
+/* LOGO */
 
-    /* LOGO */
+.logo{
 
-    .logo{
+  position:absolute;
 
-      position:absolute;
+  top:20px;
+  left:20px;
 
-      top:20px;
-      left:20px;
+  width:300px;
 
-      width:300px;
+  z-index:20;
 
-      z-index:20;
+}
 
-    }
+/* CENTERED LAMB GROUP */
 
-    /* CENTERED LAMB GROUP */
+.lamb-container{
 
-    .lamb-container{
+  position:absolute;
 
-      position:absolute;
+  top:50%;
+  left:50%;
 
-      top:50%;
-      left:50%;
+  width:700px;
+  height:320px;
 
-      width:700px;
-      height:320px;
+  transform:
+    translate(-50%,-50%);
 
-      transform:
-        translate(-50%,-50%);
+  z-index:10;
 
-      z-index:10;
+}
 
-    }
+/* LAMBS */
 
-    /* LAMBS */
+.lamb{
 
-    .lamb{
+  position:absolute;
 
-      position:absolute;
+  width:180px;
 
-      width:180px;
+  cursor:pointer;
 
-      cursor:pointer;
+  transition:
+    transform .3s ease,
+    filter .3s ease;
 
-      transition:
-        transform .3s ease,
-        filter .3s ease;
+  filter:
+    drop-shadow(0 0 10px rgba(255,255,255,.85));
 
-      filter:
-        drop-shadow(0 0 10px rgba(255,255,255,0.85));
+}
 
-    }
+.lamb:hover{
 
-    .lamb:hover{
+  transform:
+    scale(1.08)
+    rotate(-2deg);
 
-      transform:
-        scale(1.08)
-        rotate(-2deg);
+  filter:
+    drop-shadow(0 0 18px rgba(255,255,255,1));
 
-      filter:
-        drop-shadow(0 0 18px rgba(255,255,255,1));
+}
 
-    }
+/* POSITIONS */
 
-    /* INDIVIDUAL POSITIONS */
+.ig{
+  left:0;
+  top:40px;
+}
 
-    .ig{
-      left:0;
-      top:40px;
-    }
+.shop{
+  left:220px;
+  top:120px;
+}
 
-    .shop{
-      left:220px;
-      top:120px;
-    }
+.yt{
+  left:430px;
+  top:10px;
+}
 
-    .yt{
-      left:430px;
-      top:10px;
-    }
+/* AUDIO PLAYER */
 
-    /* AUDIO PLAYER */
+.player{
 
-    .player{
+  position:absolute;
 
-      position:absolute;
+  bottom:36px;
+  left:50%;
 
-      bottom:34px;
-      left:50%;
+  transform:
+    translateX(-50%);
 
-      transform:
-        translateX(-50%);
+  display:flex;
+  align-items:center;
 
-      display:flex;
-      align-items:center;
+  gap:10px;
 
-      gap:10px;
+  z-index:30;
 
-      z-index:30;
+}
 
-    }
+/* PLAY BUTTON */
 
-    /* PLAY BUTTON */
+#playBtn{
 
-    #playBtn{
+  background:none;
 
-      background:transparent;
+  border:none;
 
-      border:none;
+  color:#ef8ee7;
 
-      color:#ef8ee7;
+  font-size:18px;
 
-      font-size:18px;
+  cursor:pointer;
 
-      cursor:pointer;
+  line-height:1;
 
-      padding:0;
+}
 
-      line-height:1;
+/* BAR CONTAINER */
 
-      transition:
-        opacity .2s ease,
-        transform .2s ease;
+.progress-container{
 
-    }
+  width:95px;
+  height:3px;
 
-    #playBtn:hover{
+  background:
+    rgba(239,142,231,.25);
 
-      opacity:.75;
+  position:relative;
 
-      transform:
-        scale(1.05);
+  overflow:hidden;
 
-    }
+}
 
-    /* PROGRESS BAR */
+/* FILLED BAR */
 
-    .progress-wrap{
+.progress-fill{
 
-      width:120px;
-      height:3px;
+  position:absolute;
 
-      background:
-        rgba(239,142,231,0.3);
+  top:0;
+  left:0;
 
-      position:relative;
+  height:100%;
 
-      overflow:hidden;
+  width:0%;
 
-    }
+  background:#ef8ee7;
 
-    .progress-bar{
+}
 
-      position:absolute;
+/* INVISIBLE INPUT */
 
-      top:0;
-      left:0;
+#progress{
 
-      height:100%;
+  position:absolute;
 
-      width:0%;
+  width:95px;
+  height:12px;
 
-      background:#ef8ee7;
+  opacity:0;
 
-    }
+  cursor:pointer;
 
-    /* INVISIBLE RANGE INPUT */
+}
 
-    #progress{
+/* MOBILE */
 
-      position:absolute;
+@media (max-width:768px){
 
-      width:120px;
-      height:12px;
+  .logo{
+    width:220px;
+  }
 
-      opacity:0;
+  .lamb-container{
+    width:320px;
+    height:420px;
+  }
 
-      cursor:pointer;
+  .lamb{
+    width:140px;
+  }
 
-    }
+  .ig{
+    left:0;
+    top:20px;
+  }
 
-    /* MOBILE */
+  .shop{
+    left:90px;
+    top:140px;
+  }
 
-    @media (max-width:768px){
+  .yt{
+    left:170px;
+    top:40px;
+  }
 
-      .logo{
-        width:220px;
-      }
+}
 
-      .lamb-container{
-
-        width:320px;
-        height:420px;
-
-      }
-
-      .lamb{
-        width:140px;
-      }
-
-      .ig{
-        left:0;
-        top:20px;
-      }
-
-      .shop{
-        left:90px;
-        top:140px;
-      }
-
-      .yt{
-        left:170px;
-        top:40px;
-      }
-
-    }
-
-  </style>
+</style>
 
 </head>
 
 <body>
 
-  <!-- BACKGROUND -->
+<!-- BACKGROUND -->
 
-  <img
-    src="./bg.jpg"
-    class="background"
+<img
+  src="bg.jpg"
+  class="background"
+/>
+
+<!-- OVERLAY -->
+
+<div class="overlay"></div>
+
+<!-- LOGO -->
+
+<img
+  src="logo.png"
+  class="logo"
+/>
+
+<!-- LAMBS -->
+
+<div class="lamb-container">
+
+  <!-- INSTAGRAM -->
+
+  <a
+    href="https://instagram.com/aerosol_____"
+    target="_blank"
   >
 
-  <!-- OVERLAY -->
+    <img
+      src="lamb1.png"
+      class="lamb ig"
+    />
 
-  <div class="overlay"></div>
+  </a>
 
-  <!-- LOGO -->
+  <!-- SHOP -->
 
-  <img
-    src="./logo.png"
-    class="logo"
+  <a
+    href="https://aerosolskateboards.com"
+    target="_blank"
   >
 
-  <!-- LAMBS -->
+    <img
+      src="lamb2.png"
+      class="lamb shop"
+    />
 
-  <div class="lamb-container">
+  </a>
 
-    <!-- INSTAGRAM -->
+  <!-- YOUTUBE -->
 
-    <a
-      href="https://instagram.com/aerosol_____"
-      target="_blank"
-    >
+  <a
+    href="https://www.youtube.com/@a.e.r.o.s.o.l"
+    target="_blank"
+  >
 
-      <img
-        src="./lamb1.png"
-        class="lamb ig"
-      >
+    <img
+      src="lamb3.png"
+      class="lamb yt"
+    />
 
-    </a>
+  </a>
 
-    <!-- SHOP -->
+</div>
 
-    <a
-      href="https://aerosolskateboards.com"
-      target="_blank"
-    >
+<!-- AUDIO -->
 
-      <img
-        src="./lamb2.png"
-        class="lamb shop"
-      >
+<div class="player">
 
-    </a>
+  <button id="playBtn">
+    ▶
+  </button>
 
-    <!-- YOUTUBE -->
+  <div class="progress-container">
 
-    <a
-      href="https://www.youtube.com/@a.e.r.o.s.o.l"
-      target="_blank"
-    >
+    <div
+      class="progress-fill"
+      id="progressFill"
+    ></div>
 
-      <img
-        src="./lamb3.png"
-        class="lamb yt"
-      >
-
-    </a>
+    <input
+      type="range"
+      id="progress"
+      value="0"
+      min="0"
+      max="100"
+    />
 
   </div>
 
-  <!-- AUDIO PLAYER -->
+</div>
 
-  <div class="player">
+<!-- AUDIO FILE -->
 
-    <button id="playBtn">
-      ▶
-    </button>
+<audio id="audio">
 
-    <div class="progress-wrap">
+  <source
+    src="song.mp3"
+    type="audio/mpeg"
+  />
 
-      <div
-        class="progress-bar"
-        id="progressBar"
-      ></div>
+</audio>
 
-      <input
-        type="range"
-        id="progress"
-        value="0"
-        min="0"
-        max="100"
-      >
+<!-- SCRIPT -->
 
-    </div>
+<script>
 
-  </div>
+const audio =
+  document.getElementById("audio");
 
-  <!-- AUDIO -->
+const playBtn =
+  document.getElementById("playBtn");
 
-  <audio id="audio">
+const progress =
+  document.getElementById("progress");
 
-    <source
-      src="./song.mp3"
-      type="audio/mpeg"
-    >
+const progressFill =
+  document.getElementById("progressFill");
 
-  </audio>
+/* PLAY / PAUSE */
 
-  <!-- SCRIPT -->
+playBtn.addEventListener("click",()=>{
 
-  <script>
+  if(audio.paused){
 
-    const audio =
-      document.getElementById("audio");
+    audio.play();
 
-    const playBtn =
-      document.getElementById("playBtn");
+    playBtn.innerText = "❚❚";
 
-    const progress =
-      document.getElementById("progress");
+  }else{
 
-    const progressBar =
-      document.getElementById("progressBar");
+    audio.pause();
 
-    /* PLAY / PAUSE */
+    playBtn.innerText = "▶";
 
-    playBtn.addEventListener("click",()=>{
+  }
 
-      if(audio.paused){
+});
 
-        audio.play();
+/* UPDATE BAR */
 
-        playBtn.innerText = "❚❚";
+audio.addEventListener("timeupdate",()=>{
 
-      }else{
+  const percent =
+    (audio.currentTime / audio.duration) * 100;
 
-        audio.pause();
+  progress.value = percent;
 
-        playBtn.innerText = "▶";
+  progressFill.style.width =
+    percent + "%";
 
-      }
+});
 
-    });
+/* SCRUB */
 
-    /* UPDATE PROGRESS */
+progress.addEventListener("input",()=>{
 
-    audio.addEventListener("timeupdate",()=>{
+  const scrub =
+    (progress.value / 100) * audio.duration;
 
-      const percent =
-        (audio.currentTime / audio.duration) * 100;
+  audio.currentTime = scrub;
 
-      progress.value = percent;
+  progressFill.style.width =
+    progress.value + "%";
 
-      progressBar.style.width =
-        percent + "%";
+});
 
-    });
-
-    /* SCRUB AUDIO */
-
-    progress.addEventListener("input",()=>{
-
-      const scrubTime =
-        (progress.value / 100) * audio.duration;
-
-      audio.currentTime = scrubTime;
-
-      progressBar.style.width =
-        progress.value + "%";
-
-    });
-
-  </script>
+</script>
 
 </body>
 
